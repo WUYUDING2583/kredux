@@ -1,4 +1,4 @@
-**English** | 简体中文
+**English** | [简体中文](https://github.com/yuyi2583/kredux/blob/master/README-zh_CN.md)
 
 kredux is a component that imitates redux. It implements `createStore`, `applyMiddleware`, `combineReducers` , and some redux middleware, i.e., `thunk`, `logger`, `promise`.
 
