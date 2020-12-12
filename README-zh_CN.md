@@ -1,10 +1,10 @@
-**English** | 简体中文
+English | **简体中文**
 
-kredux is a component that imitates redux. It implements `createStore`, `applyMiddleware`, `combineReducers` , and some redux middleware, i.e., `thunk`, `logger`, `promise`.
+kredux是模仿redux编写的简版redux，实现了`createStore`，`applyMiddleware`，`combineReducers`以及简版redux中间件`thunk`和`logger`。
 
-## Usage
+## 用法
 
-### Create store
+### 创建store
 
 ```javascript
 import { createStore, combineReducers,applyMiddleware } from "../kredux";
@@ -43,7 +43,7 @@ const store = createStore(
 export default store;
 ```
 
-### Import&Use
+### 引入及使用
 
 ```javascript
 import React, { Component } from "react";
@@ -52,20 +52,23 @@ import store from "../store";
 class ReduxPage extends Component {
     
     componentDidMount() {
-		//subscribe store
+	//订阅store
         this.unsubscribe = store.subscribe(() => {
             this.forceUpdate();
         })
     }
 
     componentWillUnmount() {
+        //取消订阅
         this.unsubscribe();
     }
 
+    //直接调用
     add = () => {
         store.dispatch({ type: "ADD", payload: 1 });
     }
 
+    //异步调用
     asyAdd=()=>{
         console.log("store.dispatch",store.dispatch);
         store.dispatch(({getState,dispatch})=>{
@@ -76,6 +79,7 @@ class ReduxPage extends Component {
         })
     }
     
+    //Promise
     promiseMinus=()=>{
         store.dispatch(Promise.resolve({type:"MINUS",payload:10}));
        
@@ -103,9 +107,9 @@ class ReduxPage extends Component {
 export default ReduxPage;
 ```
 
-## Implementation
+## 实现
 
-### Implement Middleware
+### 中间件实现
 
 ```javascript
 import { isFSA } from "flux-standard-action";
@@ -189,6 +193,7 @@ export default function createStore(reducer, enhancer) {
 ### applyMiddleware
 
 ```javascript
+
 function applyMiddleware(...funcs) {
     return createStore=>reducer=>{
         const store=createStore(reducer);
