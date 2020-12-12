@@ -1,4 +1,4 @@
-English | **简体中文**
+[English](https://github.com/yuyi2583/kredux) | **简体中文**
 
 kredux是模仿redux编写的简版redux，实现了`createStore`，`applyMiddleware`，`combineReducers`以及简版redux中间件`thunk`和`logger`。
 
